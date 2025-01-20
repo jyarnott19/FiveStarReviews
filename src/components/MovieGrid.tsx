@@ -1,6 +1,7 @@
-import { Text } from "@chakra-ui/react";
+import { Button, HStack, Input, SimpleGrid, Text } from "@chakra-ui/react";
 import useMovies from "@/hooks/useMovies";
 import { useState } from "react";
+import MovieCard from "./MovieCard";
 
 const MovieGrid = () => {
   const [searchString, setSearchString] = useState("");
@@ -13,26 +14,29 @@ const MovieGrid = () => {
   };
   return (
     <>
-      <input
-        title="search"
-        type="text"
-        value={tempString}
-        onChange={(e) => setTempString(e.target.value)}
-      />
-      <button onClick={runSearch}>Search</button>
+      <HStack>
+        <Input
+          title="search"
+          type="text"
+          value={tempString}
+          onChange={(e) => setTempString(e.target.value)}
+        />
+        <Button onClick={runSearch} colorPalette="teal">
+          Search
+        </Button>
+      </HStack>
       {loading && <Text>Loading...</Text>}
       {error && <Text>{error}</Text>}
       {movies && (
-        <ul>
+        <SimpleGrid
+          columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+          gap={10}
+          padding="10px"
+        >
           {movies.map((movie) => (
-            <li key={movie.imdbID}>
-              <img src={movie.Poster} alt={movie.Title} />
-              <h2>
-                {movie.Title} ({movie.Year})
-              </h2>
-            </li>
+            <MovieCard key={movie.imdbID} movie={movie} />
           ))}
-        </ul>
+        </SimpleGrid>
       )}
     </>
   );

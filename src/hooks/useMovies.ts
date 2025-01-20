@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import apiClient from "@/services/api-client";
 import { CanceledError } from "axios";
 
-interface Movie {
+export interface Movie {
     imdbID: string;
     Title: string;
     Year: string;
