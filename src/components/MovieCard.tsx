@@ -7,7 +7,7 @@ interface MovieCardProps {
 
 const MovieCard = ({ movie }: MovieCardProps) => {
   return (
-    <Card.Root borderRadius={10} overflow={"hidden"} boxShadow="md" bg="white">
+    <Card.Root borderRadius={10} overflow={"hidden"}>
       <Image src={movie.Poster} alt={movie.Title} />
       <Card.Header>{movie.Title}</Card.Header>
       <Card.Body></Card.Body>
